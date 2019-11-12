@@ -6,13 +6,15 @@ public class Bounds : MonoBehaviour
 {
     Transform player;
 
+    public Transform rightBound;
+    public Transform leftBound;
+
     public bool border;
     public bool noBorder;
-    public bool cameraShift;
     public bool locked;
 
     public float cameraMovementSpeed;
-    public float waitTime;
+    //public float waitTime;
 
     //[Space(10)]
     //public float minX;
@@ -21,10 +23,9 @@ public class Bounds : MonoBehaviour
     [Space(10)]
     public Vector3 minCameraBounds;
     public Vector3 maxCameraBounds;
-
+    
     Vector3 currentCameraBounds;
-    Vector3 prevCameraBounds;
-
+    
     //public float minY;
     //public float maxY;
     private void Start()
@@ -32,14 +33,42 @@ public class Bounds : MonoBehaviour
         player = GameObject.Find("Player").transform;
 
         currentCameraBounds = minCameraBounds;
-        prevCameraBounds = minCameraBounds;
     }
 
-    void FixedUpdate()
+    [SerializeField] bool cameraShift = false;
+
+    void LateUpdate()
     {
         if (cameraShift)
         {
-            StartCoroutine(CameraShifting(waitTime));
+            Transform playerPos = GameObject.Find("Player").transform;
+            Vector3 nextCameraBounds = currentCameraBounds;
+
+            float _rightBoundPosX = rightBound.position.x;
+            float _leftBoundPosX = leftBound.position.x;
+
+            if (playerPos.position.x > _rightBoundPosX)
+            {
+                float _nextCameraBoundX = currentCameraBounds.x + 35f; //if it works, dont touch it!
+                float _nextCameraBoundY = minCameraBounds.y;
+
+                currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
+
+                nextCameraBounds = new Vector3(
+                    Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
+                    , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
+                    , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
+            }
+
+            transform.position = Vector3.Lerp(transform.position, nextCameraBounds, cameraMovementSpeed * Time.deltaTime);
+
+            //if (playerPos.x < _rightBoundX - 2f)
+            //{
+            //    //Vector3 prev = currentCameraBounds -= minCameraBounds;
+
+            //    //transform.position = Vector3.Lerp(transform.position, prev, Time.deltaTime * cameraMovementSpeed);
+            //    //Mathf.Clamp(transform.position.x, minCameraBounds.x, maxCameraBounds.x);
+            //}
         }
 
         if (border)
@@ -60,28 +89,5 @@ public class Bounds : MonoBehaviour
         }
     }
 
-    IEnumerator CameraShifting(float waitTime)
-    {
-        Vector3 playerPos = player.transform.position;
-        var screenSize = (Screen.width / Screen.height) * 2;
 
-        prevCameraBounds.x = currentCameraBounds.x;
-
-        if (playerPos.x > screenSize)
-        {
-            currentCameraBounds.x = currentCameraBounds.x + Mathf.Abs(minCameraBounds.x);
-
-            transform.position = Vector3.Lerp(transform.position, currentCameraBounds, Time.deltaTime * cameraMovementSpeed);
-            Mathf.Clamp(transform.position.x, minCameraBounds.x, maxCameraBounds.x);
-
-            yield return new WaitForSeconds(waitTime);
-        }
-        if (playerPos.x < screenSize - 2)
-        {
-            transform.position = Vector3.Lerp(transform.position, prevCameraBounds, Time.deltaTime * cameraMovementSpeed);
-            Mathf.Clamp(transform.position.x, minCameraBounds.x, maxCameraBounds.x);
-
-            yield return new WaitForSeconds(waitTime);
-        }
-    }
 }

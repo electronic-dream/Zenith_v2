@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)]
     public Animator animator;
     public CharacterController2D controller;
+    public Bounds bounds;
 
     [Space(10)]
     public Vector3 minCameraPos;
@@ -67,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 currentCameraPos = Camera.main.transform.position;
         
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, minCameraPos.x, maxCameraPos.x)
+            Mathf.Clamp(transform.position.x, bounds.leftBound.position.x, maxCameraPos.x)
             , transform.position.y
             , Mathf.Clamp(transform.position.z, -10f, -10f));
     }
