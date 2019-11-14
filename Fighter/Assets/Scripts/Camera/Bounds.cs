@@ -11,7 +11,7 @@ public class Bounds : MonoBehaviour
 
     public bool border;
     public bool noBorder;
-    public bool locked;
+    //public bool locked;
 
     public float cameraMovementSpeed;
     //public float waitTime;
@@ -59,16 +59,20 @@ public class Bounds : MonoBehaviour
                     , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
                     , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
             }
+            if (playerPos.position.x < _leftBoundPosX)
+            {
+                float _prevCameraBoundX = currentCameraBounds.x - 35f; //if it works, dont touch it!
+                float _prevCameraBoundY = minCameraBounds.y;
+
+                currentCameraBounds = new Vector3(_prevCameraBoundX, _prevCameraBoundY, -10f);
+
+                nextCameraBounds = new Vector3(
+                    Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
+                    , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
+                    , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
+            }
 
             transform.position = Vector3.Lerp(transform.position, nextCameraBounds, cameraMovementSpeed * Time.deltaTime);
-
-            //if (playerPos.x < _rightBoundX - 2f)
-            //{
-            //    //Vector3 prev = currentCameraBounds -= minCameraBounds;
-
-            //    //transform.position = Vector3.Lerp(transform.position, prev, Time.deltaTime * cameraMovementSpeed);
-            //    //Mathf.Clamp(transform.position.x, minCameraBounds.x, maxCameraBounds.x);
-            //}
         }
 
         if (border)
@@ -84,10 +88,8 @@ public class Bounds : MonoBehaviour
         {
             if (player.transform.position.x > minCameraBounds.x && player.transform.position.x < maxCameraBounds.x)
             {
-                transform.position = new Vector3(player.transform.position.x, -1f, -10f);
+                transform.position = new Vector3(player.transform.position.x, -0.3f, -10f);
             }
         }
     }
-
-
 }

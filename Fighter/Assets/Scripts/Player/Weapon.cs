@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Q))
             {
-                Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
                 timeBtwShots = startTimeBtwShots;
             }

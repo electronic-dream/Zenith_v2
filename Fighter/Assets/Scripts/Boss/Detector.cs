@@ -20,7 +20,7 @@ public class Detector : MonoBehaviour
     {
         if(collision.gameObject == player)
         {
-            bounds.locked = true;
+            //bounds.locked = true;
             boxCollider.enabled = false;
         }
     }
