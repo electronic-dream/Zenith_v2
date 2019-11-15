@@ -13,18 +13,27 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeBtwShots <= 0)
-        {
-            if (Input.GetKey(KeyCode.Q))
-            {
-                Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        //if (timeBtwShots <= 0)
+        //{
+        //    if (Input.GetKey(KeyCode.Q))
+        //    {
+        //        Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
-                timeBtwShots = startTimeBtwShots;
-            }
-        }
-        else
+        //        timeBtwShots = startTimeBtwShots;
+        //    }
+        //}
+        //else
+        //{
+        //    timeBtwShots -= Time.deltaTime;
+        //}
+        if (Input.GetButtonDown("Fire1"))
         {
-            timeBtwShots -= Time.deltaTime;
+            Shoot();
         }
+       
+    }
+    void Shoot()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }

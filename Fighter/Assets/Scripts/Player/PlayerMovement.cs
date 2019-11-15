@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public float runSpeed = 100f;
     float horizontalMove = 0f;
-    public string lastKey;
 
     [Space(10)]
     bool jump = false;
@@ -45,11 +44,8 @@ public class PlayerMovement : MonoBehaviour
         //By typing "Mathf.Abs" we make the speed positive, because for the animation we can't use negative speed. It will not play the animation
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        if (Input.GetAxisRaw("Horizontal")==(float)KeyCode.A)
-        {
-            lastKey = "left";
-        }
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; 
+
         CameraBounds();
         Jump();
         Shoot();
@@ -250,6 +246,11 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsDashing", false);
         }
+    }
+
+    private void Flip()
+    {
+        transform.Rotate(0f, 180f, 0f);
     }
 
     public void FixedUpdate()
