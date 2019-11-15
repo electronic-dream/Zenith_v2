@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float runSpeed = 100f;
     float horizontalMove = 0f;
+    public string lastKey;
 
     [Space(10)]
     bool jump = false;
@@ -45,7 +46,10 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
+        if (Input.GetAxisRaw("Horizontal")==(float)KeyCode.A)
+        {
+            lastKey = "left";
+        }
         CameraBounds();
         Jump();
         Shoot();
