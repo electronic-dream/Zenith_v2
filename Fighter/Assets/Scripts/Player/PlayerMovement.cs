@@ -211,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     [SerializeField] private GameObject poofEffect;
     [SerializeField] private Animator particleAnimator;
     private void CanInstantiateParticles(GameObject particleSpawn)
@@ -241,6 +242,8 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
+=======
+>>>>>>> parent of feecaaa... Level1-AlmostDone!
 =======
 >>>>>>> parent of feecaaa... Level1-AlmostDone!
     public void FixedUpdate()
