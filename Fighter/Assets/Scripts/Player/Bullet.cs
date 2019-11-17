@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Rigidbody2D rb2d;
-    public float speed = 200f;
-    
-    private void Start()
+    public int damage = 2;
+    public float speed = 20f;
+
+    public Rigidbody2D rb;
+
+    void Start()
     {
-        rb2d.velocity = transform.right * speed;           
+        rb.velocity = transform.right * speed;
+    }
+
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        Boss boss = hitInfo.GetComponent<Boss>();
+
+        if (boss != null)
+        {
+            boss.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

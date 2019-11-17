@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         //By typing "Mathf.Abs" we make the speed positive, because for the animation we can't use negative speed. It will not play the animation
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; 
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         CameraBounds();
         Jump();
@@ -246,11 +246,6 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsDashing", false);
         }
-    }
-
-    private void Flip()
-    {
-        transform.Rotate(0f, 180f, 0f);
     }
 
     public void FixedUpdate()

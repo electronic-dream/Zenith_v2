@@ -86,7 +86,7 @@ public class Health : MonoBehaviour
         }
 
         //if (jumpBack)
-           //JumpBack();
+        //JumpBack();
     }
     //void JumpBack()
     //{
@@ -137,7 +137,7 @@ public class Health : MonoBehaviour
             //numOfHearts--;
 
             immortal = true;
-            noDmg = true;
+            //noDmg = true;
 
             rb.velocity = transform.up * jumpWhenHitted;
 
@@ -149,18 +149,22 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(immortalTime);
 
             immortal = false;
-            noDmg = false;
+            //noDmg = false;
         }
     }
+
     private IEnumerator IndicateImmortal()
     {
+        Debug.Log("Inicate Immortal");
         while (immortal)
         {
+            Debug.Log("I");
             spriteRenderer.enabled = false;
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.2f);
 
+            Debug.Log("I2");
             spriteRenderer.enabled = true;
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.2f);
         }
     }
 }
