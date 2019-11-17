@@ -2,34 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(Rigidbody2D))]
 public class FollowPlayer : MonoBehaviour
 {
-    public Transform target;
-    // private Rigidbody2D rb;
+    public Transform player;
+    public Boss boss;
 
-    public float speed;
-    public float startTimeToFollow;
-
-    private float timeToFollow;
-
-    private void Start()
-    {
-        //rb = GetComponent<Rigidbody2D>();
-    }
+    public float speed = 10f;
 
     private void FixedUpdate()
     {
-        transform.position = Vector2.Lerp(transform.position, target.position, speed * Time.fixedDeltaTime);
+        Vector2 target = new Vector2(player.position.x, transform.position.y);
 
-        //if (timeToFollow <= 0)
-        //{
+        
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.fixedDeltaTime);
 
-        //    timeToFollow = startTimeToFollow;
-        //}
-        //else
-        //{
-        //    timeToFollow -= Time.deltaTime;
-        //}
+        transform.position = this.transform.position;
     }
 }
