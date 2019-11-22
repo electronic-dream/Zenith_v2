@@ -155,14 +155,14 @@ public class Health : MonoBehaviour
 
     private IEnumerator IndicateImmortal()
     {
-        Debug.Log("Inicate Immortal");
+        //Debug.Log("Inicate Immortal");
         while (immortal)
         {
-            Debug.Log("I");
+            //Debug.Log("I");
             spriteRenderer.enabled = false;
             yield return new WaitForSeconds(.2f);
 
-            Debug.Log("I2");
+            //Debug.Log("I2");
             spriteRenderer.enabled = true;
             yield return new WaitForSeconds(.2f);
         }

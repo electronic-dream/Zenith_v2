@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public float setDashValue;
     private float timer;
 
-    private bool activNoDmg;
+    public bool activNoDmg;
 
     void Start()
     {
@@ -79,12 +79,17 @@ public class PlayerMovement : MonoBehaviour
 
     void CameraBounds()
     {
+        //We set the bounds to the player - when he moves on the x axis or the left or right he will stop at certain point because of our constraints,
+        //but when he moves on the y axis or up and down we will stop at certain point because of constraints we set! 
         transform.position = new Vector3(
             Mathf.Clamp(
                 transform.position.x,
                 bounds.minCameraBounds.x - Vector3.Distance(bounds.minCameraBounds, bounds.leftBound.position)
                 , bounds.maxCameraBounds.x + Vector3.Distance(bounds.maxCameraBounds, bounds.rightBound.position))
-            , transform.position.y
+            , Mathf.Clamp(
+                transform.position.y,
+                bounds.minCameraBounds.y - Vector3.Distance(bounds.minCameraBounds, bounds.upBound.position)
+                , bounds.maxCameraBounds.y + Vector3.Distance(bounds.maxCameraBounds, bounds.downBound.position))
             , Mathf.Clamp(transform.position.z, -10f, -10f));
     }
 
@@ -214,10 +219,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (direction == 1 || direction == 2 || direction == 3 || direction == 4 || direction == 5 || direction == 6)
                     {
-                        health.noDmg = true;
+                        health.immortal = true;
                     }
                     else if (direction == 0)
-                        health.noDmg = false;
+                        health.immortal = false;
                 }
             }
         }

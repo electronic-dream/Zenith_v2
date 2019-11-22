@@ -8,6 +8,8 @@ public class Bounds : MonoBehaviour
 
     public Transform rightBound;
     public Transform leftBound;
+    public Transform upBound;
+    public Transform downBound;
 
     public bool border;
     public bool noBorder;
@@ -46,6 +48,9 @@ public class Bounds : MonoBehaviour
 
             float _rightBoundPosX = rightBound.position.x;
             float _leftBoundPosX = leftBound.position.x;
+
+            float _upBoundPoY = upBound.position.y;
+            float _downBoundPosY = downBound.position.y;
 
             if (playerPos.position.x > _rightBoundPosX)
             {

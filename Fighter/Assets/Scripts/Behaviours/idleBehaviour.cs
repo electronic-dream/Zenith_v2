@@ -9,11 +9,13 @@ public class idleBehaviour : StateMachineBehaviour
     public float maxTime;
 
     private Transform playerPos;
+    private SpriteRenderer spriteRenderer;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer = Random.Range(minTime, maxTime);
         playerPos = GameObject.Find("Player").GetComponent<Transform>();
+        spriteRenderer = GameObject.FindGameObjectWithTag("Boss").GetComponent<SpriteRenderer>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -23,9 +25,18 @@ public class idleBehaviour : StateMachineBehaviour
             animator.SetTrigger("jump");
         }
         else
+        {
             timer -= Time.deltaTime;
 
-        //animator.transform.Rotate(0f, playerPos.rotation.y, 0f);
+            if (playerPos.transform.position.x > animator.transform.position.x)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else if (playerPos.transform.position.x < animator.transform.position.x)
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
