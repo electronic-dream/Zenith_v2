@@ -81,15 +81,19 @@ public class PlayerMovement : MonoBehaviour
     {
         //We set the bounds to the player - when he moves on the x axis or the left or right he will stop at certain point because of our constraints,
         //but when he moves on the y axis or up and down we will stop at certain point because of constraints we set! 
+
         transform.position = new Vector3(
+
             Mathf.Clamp(
                 transform.position.x,
                 bounds.minCameraBounds.x - Vector3.Distance(bounds.minCameraBounds, bounds.leftBound.position)
                 , bounds.maxCameraBounds.x + Vector3.Distance(bounds.maxCameraBounds, bounds.rightBound.position))
+
             , Mathf.Clamp(
                 transform.position.y,
-                bounds.minCameraBounds.y - Vector3.Distance(bounds.minCameraBounds, bounds.upBound.position)
-                , bounds.maxCameraBounds.y + Vector3.Distance(bounds.maxCameraBounds, bounds.downBound.position))
+                bounds.minCameraBounds.y - Vector3.Distance(bounds.minCameraBounds, bounds.downBound.position)
+                , bounds.maxCameraBounds.y + Vector3.Distance(bounds.maxCameraBounds, bounds.upBound.position))
+
             , Mathf.Clamp(transform.position.z, -10f, -10f));
     }
 

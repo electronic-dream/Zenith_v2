@@ -12,8 +12,7 @@ public class NextLevel : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             Debug.Log($"Player reached {nextLevel}");
-            //SceneManager.SetActiveScene(SceneManager.GetSceneByName(nextLevel));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(nextLevel));
         }
     }
-
 }
