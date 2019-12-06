@@ -306,6 +306,8 @@ MonoBehaviour:
   downBound: {fileID: 1796324428}
   border: 0
   noBorder: 0
+  moveX: 1
+  moveY: 0
   cameraMovementSpeed: 10
   minCameraBounds: {x: -17.7, y: -0.3, z: -10}
   maxCameraBounds: {x: 52.3, y: -0.3, z: -10}
