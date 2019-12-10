@@ -89,10 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 bounds.minCameraBounds.x - Vector3.Distance(bounds.minCameraBounds, bounds.leftBound.position)
                 , bounds.maxCameraBounds.x + Vector3.Distance(bounds.maxCameraBounds, bounds.rightBound.position))
 
-            , Mathf.Clamp(
-                transform.position.y,
-                bounds.minCameraBounds.y - Vector3.Distance(bounds.minCameraBounds, bounds.downBound.position)
-                , bounds.maxCameraBounds.y + Vector3.Distance(bounds.maxCameraBounds, bounds.upBound.position))
+            , transform.position.y
 
             , Mathf.Clamp(transform.position.z, -10f, -10f));
     }

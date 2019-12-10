@@ -81,37 +81,7 @@ public class Bounds : MonoBehaviour
                         , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
                 }
             }
-
-            if (moveY)
-            {
-                if (playerPos.position.y > _upBoundPosY)
-                {
-                    Debug.Log("Player is over the up bound");
-                    float _nextCameraBoundX = minCameraBounds.x;
-                    float _nextCameraBoundY = currentCameraBounds.y + 23f;  //if it works, dont touch it!
-
-                    currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
-
-                    nextCameraBounds = new Vector3(
-                        Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
-                        , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
-                        , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
-                }
-                if (playerPos.position.y < _downBoundPosY)
-                {
-                    Debug.Log("Player is under the down bound");
-                    float _prevCameraBoundX = minCameraBounds.x;
-                    float _prevCameraBoundY = currentCameraBounds.y - 23f;  //if it works, dont touch it!
-
-                    currentCameraBounds = new Vector3(_prevCameraBoundX, _prevCameraBoundY, -10f);
-                    
-                    nextCameraBounds = new Vector3(
-                        Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
-                        , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
-                        , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
-                }
-            }
-
+           
             transform.position = Vector3.Lerp(transform.position, nextCameraBounds, cameraMovementSpeed * Time.deltaTime);
         }
 
