@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     public int health = 1000;
 
     private GameObject boss;
-    public GameObject smokeCloudPrefab;
+    public GameObject deathEffectPrefab;
     
     public void TakeDamage(int damage)
     {
@@ -16,7 +16,7 @@ public class Boss : MonoBehaviour
 
         if (health <= 0)
         {
-            Instantiate(smokeCloudPrefab, transform.position, transform.rotation);
+            Instantiate(deathEffectPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
