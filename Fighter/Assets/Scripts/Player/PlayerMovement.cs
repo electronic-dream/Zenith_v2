@@ -51,7 +51,9 @@ public class PlayerMovement : MonoBehaviour
         Shoot();
 
         if (isDashing)
+        {
             Dash();
+        }
     }
 
     void Jump()
@@ -162,7 +164,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //If we ran out of juice the direction sets to 0 because we aren't dashing
             if (dashTime <= 0)
             {
                 direction = 0;
@@ -239,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
             isDashing = true;
             Instantiate(particleSpawn, transform.position, Quaternion.identity);
         }
-        else if (poofEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Poof"))
+        else if (poofEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(1).IsName("Poof"))
         {
             dash = false;
             isDashing = false;
