@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
             , transform.position.y
 
-            , Mathf.Clamp(transform.position.z, -10f, -10f));
+            , Mathf.Clamp(transform.position.z, -5f, -5f));
     }
 
     public void OnLanding()

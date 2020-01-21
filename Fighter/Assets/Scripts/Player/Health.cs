@@ -122,7 +122,7 @@ public class Health : MonoBehaviour
     //}
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Boss"))
+        if (other.CompareTag("Boss") || other.CompareTag("BossBullet"))
         {
             StartCoroutine(TakePlayerDamage());
         }

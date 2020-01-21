@@ -17,10 +17,17 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Boss boss = hitInfo.GetComponent<Boss>();
+        Cannon cannon = hitInfo.GetComponent<Cannon>();
 
         if (boss != null)
         {
             boss.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
+        if(cannon != null)
+        {
+            cannon.TakeCanonDamage(damage);
             Destroy(gameObject);
         }
     }

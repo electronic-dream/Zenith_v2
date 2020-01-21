@@ -13,8 +13,6 @@ public class Bounds : MonoBehaviour
 
     public bool border;
     public bool noBorder;
-    public bool moveX;
-    public bool moveY;
     //public bool locked;
 
     public float cameraMovementSpeed;
@@ -39,11 +37,12 @@ public class Bounds : MonoBehaviour
         currentCameraBounds = minCameraBounds;
     }
 
-    [SerializeField] bool cameraShift = false;
+    [SerializeField] bool cameraShiftX = false;
+    [SerializeField] bool cameraShiftY = false;
 
     void LateUpdate()
     {
-        if (cameraShift)
+        if (cameraShiftX)
         {
             Transform playerPos = GameObject.Find("Player").transform;
             Vector3 nextCameraBounds = currentCameraBounds;
@@ -51,37 +50,64 @@ public class Bounds : MonoBehaviour
             float _rightBoundPosX = rightBound.position.x;
             float _leftBoundPosX = leftBound.position.x;
 
-            float _upBoundPosY = upBound.position.y;
-            float _downBoundPosY = downBound.position.y;
-
-            if (moveX)
+            if (playerPos.position.x > _rightBoundPosX)
             {
-                if (playerPos.position.x > _rightBoundPosX)
-                {
-                    float _nextCameraBoundX = currentCameraBounds.x + 35f; //if it works, dont touch it!
-                    float _nextCameraBoundY = minCameraBounds.y;
+                float _nextCameraBoundX = currentCameraBounds.x + 35f; //it works, somehow
+                float _nextCameraBoundY = minCameraBounds.y;
 
-                    currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
+                currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
 
-                    nextCameraBounds = new Vector3(
-                        Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
-                        , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
-                        , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
-                }
-                if (playerPos.position.x < _leftBoundPosX)
-                {
-                    float _prevCameraBoundX = currentCameraBounds.x - 35f; //if it works, dont touch it!
-                    float _prevCameraBoundY = minCameraBounds.y;
+                nextCameraBounds = new Vector3(
+                    Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
+                    , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
+                    , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
 
-                    currentCameraBounds = new Vector3(_prevCameraBoundX, _prevCameraBoundY, -10f);
-
-                    nextCameraBounds = new Vector3(
-                        Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
-                        , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
-                        , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
-                }
             }
-           
+            if (playerPos.position.x < _leftBoundPosX)
+            {
+                float _prevCameraBoundX = currentCameraBounds.x - 35f; //it works, somehow
+                float _prevCameraBoundY = minCameraBounds.y;
+
+                currentCameraBounds = new Vector3(_prevCameraBoundX, _prevCameraBoundY, -10f);
+
+                nextCameraBounds = new Vector3(
+                    Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
+                    , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
+                    , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
+            }
+
+            transform.position = Vector3.Lerp(transform.position, nextCameraBounds, cameraMovementSpeed * Time.deltaTime);
+        }
+
+        if (cameraShiftY)
+        {
+            Transform playerPos = GameObject.Find("Player").transform;
+            Vector3 nextCameraBounds = currentCameraBounds;
+
+            float _upBoundPosY = upBound.transform.position.y;
+            float _downBoundPosY = downBound.transform.position.y;
+
+            if (playerPos.position.y > _upBoundPosY)
+            {
+                float _nextCameraBoundX = minCameraBounds.x;
+                float _nextCameraBoundY = currentCameraBounds.y + 23f;
+
+                currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
+               
+            }
+            if (playerPos.position.y < _downBoundPosY)
+            {
+                float _prevCameraBoundX = minCameraBounds.x;
+                float _prevCameraBoundY = currentCameraBounds.y - 23f;
+
+                currentCameraBounds = new Vector3(_prevCameraBoundX, _prevCameraBoundY, -10f);
+            }
+
+            nextCameraBounds = new Vector3(
+                Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
+                , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
+                , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
+
             transform.position = Vector3.Lerp(transform.position, nextCameraBounds, cameraMovementSpeed * Time.deltaTime);
         }
 

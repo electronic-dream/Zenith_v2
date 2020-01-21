@@ -7,17 +7,16 @@ public class Cannon : MonoBehaviour
     public int health = 1000;
     //public GameObject deathEffectPrefab;
     public GameObject bulletPrefab;
-
+    public Transform firePoint;
+ 
     private float timeBtwShots;
     public float startTimeBtwShots;
 
-    // Update is called once per frame
     void Update()
     {
         if (timeBtwShots <= 0)
         {
-            Instantiate(bulletPrefab, transform.position, transform.rotation);
-
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             timeBtwShots = startTimeBtwShots;
         }
         else
