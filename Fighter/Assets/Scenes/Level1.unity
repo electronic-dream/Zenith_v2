@@ -2970,6 +2970,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406f6fb2e2386c741a6096aa3b5ffd25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questionText: {fileID: 1061129927}
+  answer1: {fileID: 718973733}
+  answer2: {fileID: 307421946}
+  answer3: {fileID: 1092135527}
+  answer4: {fileID: 725499052}
 --- !u!114 &1917491723 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 620003277504472519, guid: 034b816895b16634497070c67ea11b23,
@@ -3229,6 +3234,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 620003277357419756, guid: 034b816895b16634497070c67ea11b23,
+        type: 3}
+      propertyPath: m_Name
+      value: Health
+      objectReference: {fileID: 0}
     - target: {fileID: 620003277357419752, guid: 034b816895b16634497070c67ea11b23,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3334,20 +3344,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 620003277357419756, guid: 034b816895b16634497070c67ea11b23,
+    - target: {fileID: 620003278266881961, guid: 034b816895b16634497070c67ea11b23,
         type: 3}
-      propertyPath: m_Name
-      value: Health
+      propertyPath: m_AnchoredPosition.x
+      value: 38.200195
       objectReference: {fileID: 0}
     - target: {fileID: 620003277832912401, guid: 034b816895b16634497070c67ea11b23,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 190.7998
-      objectReference: {fileID: 0}
-    - target: {fileID: 620003278266881961, guid: 034b816895b16634497070c67ea11b23,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 38.200195
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034b816895b16634497070c67ea11b23, type: 3}
