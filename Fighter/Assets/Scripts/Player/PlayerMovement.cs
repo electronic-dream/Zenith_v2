@@ -20,8 +20,13 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     public Bounds bounds;
     public Health health;
+    public Boss boss;
 
     public bool isDashing = true;
+    public bool isMoving = true;
+    public bool restricted = false;
+    public bool canBeRestricted = false;
+
 
     [Space]
     private float dashSpeed;
@@ -31,7 +36,9 @@ public class PlayerMovement : MonoBehaviour
     public float setDashValue;
     private float timer;
 
-    public bool activNoDmg;
+    //public float coordsToReach;
+
+    public bool activNoDmg = true;
 
     void Start()
     {
@@ -42,17 +49,38 @@ public class PlayerMovement : MonoBehaviour
     {
         //animation for our player - the running one!
         //By typing "Mathf.Abs" we make the speed positive, because for the animation we can't use negative speed. It will not play the animation
+
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        if (isMoving)
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        }
 
         CameraBounds();
         Jump();
         Shoot();
 
+        if (canBeRestricted)
+            RestrictPlayer();
+
         if (isDashing)
         {
             Dash();
+        }
+    }
+
+    void RestrictPlayer()
+    {   
+        if (boss.health > 0)
+        {
+            restricted = true;
+            bounds.locked = true;
+        }
+        else
+        {
+            restricted = false;
+            bounds.locked = false;
         }
     }
 
@@ -83,17 +111,32 @@ public class PlayerMovement : MonoBehaviour
     {
         //We set the bounds to the player - when he moves on the x axis or the left or right he will stop at certain point because of our constraints,
         //but when he moves on the y axis or up and down we will stop at certain point because of constraints we set! 
+        if (!restricted)
+        {
+            transform.position = new Vector3(
 
-        transform.position = new Vector3(
+                Mathf.Clamp(
+                    transform.position.x,
+                    bounds.minCameraBounds.x - Vector3.Distance(bounds.minCameraBounds, bounds.leftBound.position)
+                    , bounds.maxCameraBounds.x + Vector3.Distance(bounds.maxCameraBounds, bounds.rightBound.position))
 
-            Mathf.Clamp(
-                transform.position.x,
-                bounds.minCameraBounds.x - Vector3.Distance(bounds.minCameraBounds, bounds.leftBound.position)
-                , bounds.maxCameraBounds.x + Vector3.Distance(bounds.maxCameraBounds, bounds.rightBound.position))
+                , transform.position.y
 
-            , transform.position.y
+                , Mathf.Clamp(transform.position.z, -5f, -5f));
+        }
+        if (restricted)
+        {
+            transform.position = new Vector3(
 
-            , Mathf.Clamp(transform.position.z, -5f, -5f));
+               Mathf.Clamp(
+                   transform.position.x,
+                   bounds.currentCameraBounds.x - Vector3.Distance(bounds.currentCameraBounds, bounds.leftBound.position)
+                   , bounds.minCameraBounds.x + Vector3.Distance(bounds.minCameraBounds, bounds.rightBound.position))
+
+               , transform.position.y
+
+               , Mathf.Clamp(transform.position.z, -5f, -5f));
+        }
     }
 
     public void OnLanding()
@@ -152,14 +195,10 @@ public class PlayerMovement : MonoBehaviour
             if (controller.m_FacingRight == true && dash == true && Input.GetKeyDown(KeyCode.A))
             {
                 direction = 5;
-                controller.m_FacingRight = true;
-                dash = true;
             }
             else if (controller.m_FacingRight == false && dash == true && Input.GetKeyDown(KeyCode.D))
             {
                 direction = 6;
-                controller.m_FacingRight = false;
-                dash = true;
             }
         }
         else
@@ -195,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
                     animator.SetBool("IsDashing", true);
                 }
                 //but if we dash with only LShift and we are facing right we will dash right without having to press arrows
-                if (direction == 3)
+                else if (direction == 3)
                 {
                     controller.m_Rigidbody2D.velocity = Vector2.right * dashSpeed;
                     controller.m_Rigidbody2D.gravityScale = 0f;
@@ -208,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
                     controller.m_Rigidbody2D.gravityScale = 0f;
                     animator.SetBool("IsDashing", true);
                 }
-                if (direction == 5)
+                else if (direction == 5)
                 {
                     animator.SetBool("IsDashing", true);
                 }
@@ -216,18 +255,15 @@ public class PlayerMovement : MonoBehaviour
                 {
                     animator.SetBool("IsDashing", true);
                 }
-
-                if (activNoDmg)
-                {
-                    if (direction == 1 || direction == 2 || direction == 3 || direction == 4 || direction == 5 || direction == 6)
-                    {
-                        health.immortal = true;
-                    }
-                    else if (direction == 0)
-                        health.immortal = false;
-                }
             }
         }
+
+        if (direction == 1 || direction == 2 || direction == 3 || direction == 4 || direction == 5 || direction == 6)
+        {
+            health.immortal = true;
+        }
+        else if (direction == 0)
+            health.immortal = false;
     }
 
     [SerializeField] private GameObject poofEffect;

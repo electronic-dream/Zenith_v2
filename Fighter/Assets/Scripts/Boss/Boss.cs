@@ -9,7 +9,10 @@ public class Boss : MonoBehaviour
 
     private GameObject boss;
     public GameObject deathEffectPrefab;
-    
+    public GameObject question;
+
+    public NextLevel nxtLevel;
+
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -18,6 +21,9 @@ public class Boss : MonoBehaviour
         {
             Instantiate(deathEffectPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
+
+            nxtLevel.isAllowedToContinue = true;
+            question.SetActive(true);
         }
     }
 

@@ -46,10 +46,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 4.28413, y: 1.6757218}
+  m_Offset: {x: 2.7662942, y: 1.9329818}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -60,7 +60,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5015163, y: 2.917814}
+  m_Size: {x: 3.8683124, y: 2.0945828}
   m_EdgeRadius: 0
 --- !u!114 &695708412795033695
 MonoBehaviour:
@@ -78,7 +78,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2609717195639783083, guid: 2de04363cbe7b5a4fb4d115fad3728cf,
     type: 3}
   firePoint: {fileID: 695708412898671709}
-  startTimeBtwShots: 1
+  startTimeBtwShots: 3
 --- !u!1 &695708412898671698
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 363296223101032950}
   - component: {fileID: 363296223101032951}
   - component: {fileID: 363296223101032937}
-  - component: {fileID: 9218193165938630908}
-  - component: {fileID: 424937831367549765}
+  - component: {fileID: 2161655607856800501}
   m_Layer: 8
   m_Name: Platform
   m_TagString: Ground
@@ -28,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363296223101032948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.6, y: -12.8, z: 5}
-  m_LocalScale: {x: 1.1550561, y: 1.4677013, z: 2.1370142}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -109,7 +108,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.67858, y: 0.24993777}
   m_EdgeRadius: 0
---- !u!114 &9218193165938630908
+--- !u!114 &2161655607856800501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,31 +117,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 363296223101032948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 773aa7e0fe0958e41ad538eef3de0858, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fa8c6232dd42bb45bff2a9591250e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMoving: 1
-  rb2d: {fileID: 424937831367549765}
-  speed: 20
-  timeToDestroy: 10
---- !u!50 &424937831367549765
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363296223101032948}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  Type: 0
+  pathFinder: {fileID: 0}
+  speed: 1
+  maxDistanceToPoint: 0.1

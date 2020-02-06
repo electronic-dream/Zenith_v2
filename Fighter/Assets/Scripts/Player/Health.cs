@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Health : MonoBehaviour
 {
     public int health;
     public int numOfHearts;
     [SerializeField]
     public bool immortal = false;
-    public bool noDmg = false;
 
     //public float speed;
     //public float minX;
@@ -32,7 +32,11 @@ public class Health : MonoBehaviour
     public Collider2D colliderToDisable;
     public Animator anim;
     public GameObject bullet;
+    public PlayerMovement pMovement;
     public float jumpWhenHitted = 10f;
+
+    public GameObject questionDeath;
+    private static int count = 0;
 
     //public PauseMenu pauseMenu;
 
@@ -43,7 +47,9 @@ public class Health : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        pMovement = GetComponent<PlayerMovement>();
     }
+
     void Update()
     {
         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("MainCharDead"))
@@ -82,7 +88,11 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             rb.velocity = transform.up * 20f;
-            Dead();
+
+            pMovement.isDashing = false;
+            pMovement.isMoving = false;
+
+            StartCoroutine(QuestionBeforeDeath());
         }
 
         //if (jumpBack)
@@ -99,6 +109,24 @@ public class Health : MonoBehaviour
     //        anim.SetBool("IsJumping", true);
     //    }
     //}
+
+    public IEnumerator QuestionBeforeDeath()
+    {
+        if (count > 0)
+        {
+            Dead();
+        }
+
+        yield return new WaitForSecondsRealtime(1.6f);
+
+        if (count == 0)
+        {
+            questionDeath.SetActive(true);
+            
+            count++;
+        }
+    }
+
     public void Dead()
     {
         colliderToDisable.enabled = false;
@@ -107,14 +135,12 @@ public class Health : MonoBehaviour
         anim.SetBool("dead", true);
         anim.SetBool("IsJumping", false);
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("MainCharDead"))
-        {
-            bullet.SetActive(false);
-        }
-
+        bullet.SetActive(false);
+        
         //StartCoroutine(Die());
         //Destroy(gameObject, 2f);
     }
+
     //IEnumerator Die()
     //{
     //    yield return new WaitForSecondsRealtime(2f);
@@ -131,7 +157,7 @@ public class Health : MonoBehaviour
     public IEnumerator TakePlayerDamage()
     {
         //CameraShake shake = other.GetComponent<CameraShake>();
-        if (!immortal || !noDmg)
+        if (!immortal)
         {
             health--;
             //numOfHearts--;
@@ -141,7 +167,7 @@ public class Health : MonoBehaviour
 
             rb.velocity = transform.up * jumpWhenHitted;
 
-            if (health > 0)
+            if (health >= 1)
             {
                 StartCoroutine(IndicateImmortal());
             }
@@ -159,12 +185,12 @@ public class Health : MonoBehaviour
         while (immortal)
         {
             //Debug.Log("I");
-            spriteRenderer.enabled = false;
-            yield return new WaitForSeconds(.2f);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(.3f);
 
             //Debug.Log("I2");
-            spriteRenderer.enabled = true;
-            yield return new WaitForSeconds(.2f);
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(.3f);
         }
     }
 }

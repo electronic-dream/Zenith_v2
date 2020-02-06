@@ -170,9 +170,14 @@ MonoBehaviour:
   controller: {fileID: 5754257836461986040}
   bounds: {fileID: 0}
   health: {fileID: 5754257836461986041}
+  boss: {fileID: 0}
   isDashing: 1
+  isMoving: 1
+  restricted: 0
+  canBeRestricted: 0
   startDashTime: 0.3
   setDashValue: 50
+  coordsToReach: 0
   activNoDmg: 1
   poofEffect: {fileID: 4443276461342239382, guid: aa0aa9ed8c00fba49a94dee8dd2d3edd,
     type: 3}
@@ -193,7 +198,6 @@ MonoBehaviour:
   health: 3
   numOfHearts: 5
   immortal: 0
-  noDmg: 0
   immortalTime: 5
   minY: 0
   hearts:
@@ -212,7 +216,9 @@ MonoBehaviour:
   colliderToDisable: {fileID: 5754257836461986036}
   anim: {fileID: 5754257836461986038}
   bullet: {fileID: 5641782724574240827, guid: dae60a84bfe28164ebe5f574747dae30, type: 3}
+  pMovement: {fileID: 5754257836461986037}
   jumpWhenHitted: 30
+  questionDeath: {fileID: 0}
 --- !u!114 &5754257836461986039
 MonoBehaviour:
   m_ObjectHideFlags: 0
