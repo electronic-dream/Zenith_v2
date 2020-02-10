@@ -177,7 +177,6 @@ MonoBehaviour:
   canBeRestricted: 0
   startDashTime: 0.3
   setDashValue: 50
-  coordsToReach: 0
   activNoDmg: 1
   poofEffect: {fileID: 4443276461342239382, guid: aa0aa9ed8c00fba49a94dee8dd2d3edd,
     type: 3}
@@ -247,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4dd04666a1fc0840b0e6c1b2926ec94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 1300
+  m_JumpForce: 1550
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
@@ -310,7 +309,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &5754257836461986038
 Animator:
   serializedVersion: 3

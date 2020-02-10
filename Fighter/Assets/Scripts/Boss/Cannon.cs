@@ -8,7 +8,9 @@ public class Cannon : MonoBehaviour
     //public GameObject deathEffectPrefab;
     public GameObject bulletPrefab;
     public Transform firePoint;
- 
+
+    public bool isFacingRight;
+
     private float timeBtwShots;
     public float startTimeBtwShots;
 
@@ -16,6 +18,8 @@ public class Cannon : MonoBehaviour
     {
         if (timeBtwShots <= 0)
         {
+            bulletPrefab.GetComponent<BombBullet>().isShootingRight = isFacingRight;
+
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             timeBtwShots = startTimeBtwShots;
         }

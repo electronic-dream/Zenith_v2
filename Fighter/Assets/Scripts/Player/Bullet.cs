@@ -30,5 +30,10 @@ public class Bullet : MonoBehaviour
             cannon.TakeCanonDamage(damage);
             Destroy(gameObject);
         }
+
+        if(hitInfo.CompareTag("Environment"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

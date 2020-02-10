@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public GameObject particleSpawn;
     public SpriteRenderer spriteRenderer;
-
+    
     [Space(10)]
     public CharacterController2D controller;
     public Bounds bounds;
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void RestrictPlayer()
-    {   
+    {
         if (boss.health > 0)
         {
             restricted = true;
@@ -207,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 direction = 0;
                 controller.m_Rigidbody2D.velocity = Vector2.zero;
-                controller.m_Rigidbody2D.gravityScale = 12f;
+                controller.m_Rigidbody2D.gravityScale = 8f;
                 CanInstantiateParticles(particleSpawn);
 
                 //resseting the spawn dash time
