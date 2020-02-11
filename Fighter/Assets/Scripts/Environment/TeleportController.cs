@@ -5,15 +5,12 @@ using UnityEngine;
 public class TeleportController : MonoBehaviour
 {
     public Transform player;
+    public Cannon cannon;
 
     [Space(1)]
     public Transform[] holes;
 
     public bool isAllowedToContinue = false;
-
-    private bool goingUp = false;
-    private bool goingDown = false;
-    private bool goingNowhere = false;
 
     private void Update()
     {
@@ -27,15 +24,15 @@ public class TeleportController : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            for (int i = 1; i <= holes.Length; i++)
-            {
-                Debug.Log(i);
+            cannon.canShoot = true;
 
+            for (int i = 1; i < holes.Length; i++)
+            {
                 player.position = holes[i].position;
             }
         }
     }
-    
+
     private void OnDrawGizmos()
     {
         if (holes == null || holes.Length < 1)

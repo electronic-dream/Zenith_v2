@@ -76,7 +76,7 @@ public class Questions : MonoBehaviour
     {
         if (correctAnswer.CompareTo(buttons[answerNum - 1].GetComponentInChildren<Text>().text) == 0)
         {
-            hp.health++;
+            Health.health++;
             hp.immortal = true;
             hp.colliderToDisable.enabled = true;
 

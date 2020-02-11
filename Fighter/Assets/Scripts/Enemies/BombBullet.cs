@@ -9,7 +9,7 @@ public class BombBullet : MonoBehaviour
     public float speed;
 
     public bool isShootingRight = false;
-    
+
     private void Start()
     {
         if (isShootingRight)
@@ -26,11 +26,14 @@ public class BombBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Health hp = collision.GetComponent<Health>();
+
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Boom!");
-            
-            DestroyBullet();
+
+            if (!hp.immortal)
+                DestroyBullet();
         }
     }
 }

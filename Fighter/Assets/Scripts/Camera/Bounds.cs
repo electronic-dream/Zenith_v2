@@ -26,6 +26,7 @@ public class Bounds : MonoBehaviour
     public Vector3 minCameraBounds;
     public Vector3 maxCameraBounds;
     
+    [HideInInspector]
     public Vector3 currentCameraBounds;
 
     //public float minY;
@@ -88,14 +89,14 @@ public class Bounds : MonoBehaviour
                 float _upBoundPosY = upBound.transform.position.y;
                 float _downBoundPosY = downBound.transform.position.y;
 
-                if (playerPos.position.y >= _upBoundPosY)
+                if (playerPos.position.y > _upBoundPosY)
                 {
                     float _nextCameraBoundX = minCameraBounds.x;
                     float _nextCameraBoundY = currentCameraBounds.y + 23f;
 
                     currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
                 }
-                if (playerPos.position.y <= _downBoundPosY)
+                if (playerPos.position.y < _downBoundPosY)
                 {
                     float _prevCameraBoundX = minCameraBounds.x;
                     float _prevCameraBoundY = currentCameraBounds.y - 23f;

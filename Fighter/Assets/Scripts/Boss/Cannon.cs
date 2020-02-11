@@ -10,13 +10,27 @@ public class Cannon : MonoBehaviour
     public Transform firePoint;
     public TeleportController teleportController;
 
-    public bool isFacingRight;
+    public bool canShoot = false;
+    public bool isFacingRight = false;
+    public bool isLastCannon = false;
+
+    public GameObject question;
+    public NextLevel nextLevel;
 
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    //private void Start()
+    //{
+    //    if (isLastCannon)
+    //        question = GetComponent<GameObject>();
+    //}
+
     void Update()
     {
+        if (!canShoot)
+            return;
+
         if (timeBtwShots <= 0)
         {
             bulletPrefab.GetComponent<BombBullet>().isShootingRight = isFacingRight;
@@ -37,6 +51,12 @@ public class Cannon : MonoBehaviour
         if (health <= 0)
         {
             teleportController.isAllowedToContinue = true;
+
+            if (isLastCannon)
+            {
+                question.SetActive(true);
+                nextLevel.isAllowedToContinue = true;
+            }
 
             Destroy(gameObject);
         }

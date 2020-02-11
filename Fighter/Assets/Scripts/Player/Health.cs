@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Health : MonoBehaviour
 {
-    public int health;
+    public static int health = 1;
     public int numOfHearts;
     [SerializeField]
     public bool immortal = false;
@@ -121,7 +121,7 @@ public class Health : MonoBehaviour
         if (count == 0)
         {
             questionDeath.SetActive(true);
-            
+
             count++;
         }
     }
@@ -135,7 +135,7 @@ public class Health : MonoBehaviour
         anim.SetBool("IsJumping", false);
 
         bullet.SetActive(false);
-        
+
         //StartCoroutine(Die());
         //Destroy(gameObject, 2f);
     }

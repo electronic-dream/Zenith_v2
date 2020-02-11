@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1648556459874644453}
   - component: {fileID: 5055397012758166284}
   - component: {fileID: 5641503524007235991}
+  - component: {fileID: 4335646392529669567}
   m_Layer: 0
   m_Name: BombBulletV2
   m_TagString: Untagged
@@ -85,6 +86,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 3
+--- !u!95 &4335646392529669567
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609717195639783083}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 573d0931cc1459b4396e0154c949652a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4483880100393219805
 GameObject:
   m_ObjectHideFlags: 0

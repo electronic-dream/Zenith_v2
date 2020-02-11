@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public GameObject particleSpawn;
     public SpriteRenderer spriteRenderer;
-    
+
     [Space(10)]
     public CharacterController2D controller;
     public Bounds bounds;
@@ -121,9 +121,10 @@ public class PlayerMovement : MonoBehaviour
                     , bounds.maxCameraBounds.x + Vector3.Distance(bounds.maxCameraBounds, bounds.rightBound.position))
 
                 , transform.position.y
-
+                
                 , Mathf.Clamp(transform.position.z, -5f, -5f));
         }
+
         if (restricted)
         {
             transform.position = new Vector3(
