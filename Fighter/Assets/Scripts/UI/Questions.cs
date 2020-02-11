@@ -28,6 +28,8 @@ public class Questions : MonoBehaviour
     public Text answer3;
     public Text answer4;
 
+    public bool isLastQuestion = false;
+
     public Button[] buttons;
 
     List<string> answers = new List<string>();
@@ -81,6 +83,11 @@ public class Questions : MonoBehaviour
             pM.isMoving = true;
             pM.isDashing = true;
 
+            if(isLastQuestion)
+            {
+                hp.immortalTime = 5F;
+            }
+            
             Debug.Log("Correct!");
         }
         else

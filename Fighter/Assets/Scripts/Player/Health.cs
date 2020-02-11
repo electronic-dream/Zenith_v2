@@ -19,8 +19,7 @@ public class Health : MonoBehaviour
     //public float playerPos;
     //public float m_Speed;
 
-    [SerializeField]
-    private float immortalTime;
+    public float immortalTime;
     public float minY;
 
     public Image[] hearts;

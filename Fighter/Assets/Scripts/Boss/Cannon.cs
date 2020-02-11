@@ -8,6 +8,7 @@ public class Cannon : MonoBehaviour
     //public GameObject deathEffectPrefab;
     public GameObject bulletPrefab;
     public Transform firePoint;
+    public TeleportController teleportController;
 
     public bool isFacingRight;
 
@@ -35,7 +36,8 @@ public class Cannon : MonoBehaviour
 
         if (health <= 0)
         {
-            //Instantiate(deathEffectPrefab, transform.position, transform.rotation);
+            teleportController.isAllowedToContinue = true;
+
             Destroy(gameObject);
         }
     }

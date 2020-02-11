@@ -18,28 +18,6 @@ public class TeleportController : MonoBehaviour
     private void Update()
     {
         player = GameObject.Find("Player").transform;
-
-        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            goingNowhere = true;
-            goingDown = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            goingDown = true;
-            goingNowhere = false;
-        }
-
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            goingNowhere = true;
-            goingUp = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            goingUp = true;
-            goingNowhere = false;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,15 +31,7 @@ public class TeleportController : MonoBehaviour
             {
                 Debug.Log(i);
 
-                if (goingNowhere)
-                    return;
-
-                if (goingDown)
-                    player.position = holes[i].position;
-
-                if (goingUp)
-                    player.position = holes[i - 1].position;
-
+                player.position = holes[i].position;
             }
         }
     }
