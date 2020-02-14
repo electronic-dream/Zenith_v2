@@ -77,7 +77,6 @@ public class Questions : MonoBehaviour
         if (correctAnswer.CompareTo(buttons[answerNum - 1].GetComponentInChildren<Text>().text) == 0)
         {
             Health.health++;
-            hp.immortal = true;
             hp.colliderToDisable.enabled = true;
 
             pM.isMoving = true;
@@ -85,6 +84,7 @@ public class Questions : MonoBehaviour
 
             if(isLastQuestion)
             {
+                hp.immortal = true;
                 hp.immortalTime = 5F;
             }
             

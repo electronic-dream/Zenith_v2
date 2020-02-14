@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class Health : MonoBehaviour
 {
     public static int health = 1;
@@ -20,20 +19,20 @@ public class Health : MonoBehaviour
     //public float m_Speed;
 
     public float immortalTime;
-    public float minY;
 
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public SpriteRenderer spriteRenderer;
     public Rigidbody2D rb;
-    public Transform player;
     public Collider2D colliderToDisable;
     public Animator anim;
     public GameObject bullet;
     public PlayerMovement pMovement;
     public float jumpWhenHitted = 10f;
 
+
+    public Transform bossPos;
     public GameObject questionDeath;
     private static int count = 0;
 
@@ -109,6 +108,7 @@ public class Health : MonoBehaviour
     //    }
     //}
 
+    float distance;
     public IEnumerator QuestionBeforeDeath()
     {
         if (count > 0)
@@ -121,6 +121,11 @@ public class Health : MonoBehaviour
         if (count == 0)
         {
             questionDeath.SetActive(true);
+            immortal = true;
+            immortalTime = 5f;
+
+            distance = Vector3.Distance(transform.position, bossPos.position);
+            
 
             count++;
         }
@@ -172,6 +177,8 @@ public class Health : MonoBehaviour
             }
 
             yield return new WaitForSeconds(immortalTime);
+            
+            immortalTime = 3f;
 
             immortal = false;
             //noDmg = false;
@@ -183,11 +190,11 @@ public class Health : MonoBehaviour
         //Debug.Log("Inicate Immortal");
         while (immortal)
         {
-            //Debug.Log("I");
+            Debug.Log("I");
             spriteRenderer.enabled = true;
             yield return new WaitForSeconds(.3f);
 
-            //Debug.Log("I2");
+            Debug.Log("I2");
             spriteRenderer.enabled = false;
             yield return new WaitForSeconds(.3f);
         }
