@@ -261,10 +261,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (direction == 1 || direction == 2 || direction == 3 || direction == 4 || direction == 5 || direction == 6)
         {
-            health.immortal = true;
+            health.immortalWhileDashing = true;
         }
         else if (direction == 0)
-            health.immortal = false;
+            health.immortalWhileDashing = false;
     }
 
     [SerializeField] private GameObject poofEffect;

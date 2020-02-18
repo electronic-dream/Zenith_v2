@@ -8,9 +8,12 @@ using UnityEngine.SceneManagement;
 public class Health : MonoBehaviour
 {
     public static int health = 1;
+    private static int count = 0;
+
     public int numOfHearts;
     [SerializeField]
     public bool immortal = false;
+    public bool immortalWhileDashing = false;
 
     //public float speed;
     //public float minX;
@@ -29,12 +32,12 @@ public class Health : MonoBehaviour
     public Animator anim;
     public GameObject bullet;
     public PlayerMovement pMovement;
+
     public float jumpWhenHitted = 10f;
 
-
-    public Transform bossPos;
     public GameObject questionDeath;
-    private static int count = 0;
+
+    public bool canTeleport = false;
 
     //public PauseMenu pauseMenu;
 
@@ -107,8 +110,6 @@ public class Health : MonoBehaviour
     //        anim.SetBool("IsJumping", true);
     //    }
     //}
-
-    float distance;
     public IEnumerator QuestionBeforeDeath()
     {
         if (count > 0)
@@ -124,8 +125,23 @@ public class Health : MonoBehaviour
             immortal = true;
             immortalTime = 5f;
 
-            distance = Vector3.Distance(transform.position, bossPos.position);
-            
+            if (canTeleport)
+            {
+                Transform playerPos = GameObject.Find("Player").transform;
+                Transform bossPos = GameObject.FindGameObjectWithTag("Boss").transform;
+
+                Vector3 newPos = bossPos.position;
+
+                //Debug.Log("CM " + Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)));
+                //Debug.Log("SW " + Screen.width / 2);
+
+                if (bossPos.position.x <= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
+                    newPos.x *= 5f;
+                else if (bossPos.position.x > Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
+                    newPos.x /= 5f;
+
+                playerPos.position = newPos;
+            }
 
             count++;
         }
@@ -163,40 +179,37 @@ public class Health : MonoBehaviour
         //CameraShake shake = other.GetComponent<CameraShake>();
         if (!immortal)
         {
-            health--;
-            //numOfHearts--;
-
             immortal = true;
-            //noDmg = true;
 
-            rb.velocity = transform.up * jumpWhenHitted;
-
-            if (health >= 1)
+            if (health >= 1 && !immortalWhileDashing)
             {
+                rb.velocity = transform.up * jumpWhenHitted;
+
                 StartCoroutine(IndicateImmortal());
             }
 
             yield return new WaitForSeconds(immortalTime);
-            
+
             immortalTime = 3f;
 
             immortal = false;
-            //noDmg = false;
         }
     }
 
     private IEnumerator IndicateImmortal()
     {
+        health--;
+
         //Debug.Log("Inicate Immortal");
         while (immortal)
         {
-            Debug.Log("I");
-            spriteRenderer.enabled = true;
-            yield return new WaitForSeconds(.3f);
-
-            Debug.Log("I2");
+            //Debug.Log("I");
             spriteRenderer.enabled = false;
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(.1f);
+
+            //Debug.Log("I2");
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(.1f);
         }
     }
 }

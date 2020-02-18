@@ -10,8 +10,8 @@ public class Questions : MonoBehaviour
 {
     public Health hp;
     public PlayerMovement pM;
-    public string questionFolder;
     public string mainQuestionFolder;
+    public string questionFolder;
 
     string question = "";
     public Text questionText;

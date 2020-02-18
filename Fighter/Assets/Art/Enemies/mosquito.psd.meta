@@ -1,9 +1,48 @@
 fileFormatVersion: 2
 guid: 88b69ca3b33b1ea4c9a0e27653e66287
 TextureImporter:
-  fileIDToRecycleName: {}
+  internalIDToNameTable:
+  - first:
+      213: -7335345776834287784
+    second: mosquito_0
+  - first:
+      213: -8650765351860947655
+    second: mosquito_1
+  - first:
+      213: 5622358704833041965
+    second: mosquito_2
+  - first:
+      213: 989252168736825547
+    second: mosquito_5
+  - first:
+      213: 4794859440882528538
+    second: mosquito_7
+  - first:
+      213: -661298153626941133
+    second: mosquito_8
+  - first:
+      213: -3614317433972764127
+    second: mosquito_9
+  - first:
+      213: -5907971059784929818
+    second: mosquito_10
+  - first:
+      213: -5212617073182803155
+    second: mosquito_11
+  - first:
+      213: 7984867801625040557
+    second: mosquito_12
+  - first:
+      213: -4433713638724192177
+    second: mosquito_13
+  - first:
+      213: -7832486531187727436
+    second: mosquito_14
+  - first:
+      213: 7927387732506661561
+    second: mosquito_15
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -58,7 +97,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -69,7 +108,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -80,20 +120,296 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: mosquito_0
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 675
+        width: 126
+        height: 364
+      alignment: 9
+      pivot: {x: 0.24346797, y: 0.03376636}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 819a94033895b86488f9e87e8fc3e73f
+      internalID: -7335345776834287784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_1
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 616
+        width: 667
+        height: 275
+      alignment: 9
+      pivot: {x: 0.012332876, y: 0.1634497}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1f9c5ca7ab972242b3988c07e75dd51
+      internalID: -8650765351860947655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_2
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 775
+        width: 206
+        height: 163
+      alignment: 9
+      pivot: {x: 0.9013334, y: 0.5298357}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b24f02799f23d84b91a14fece6ed10d
+      internalID: 5622358704833041965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_5
+      rect:
+        serializedVersion: 2
+        x: 1518
+        y: 704
+        width: 364
+        height: 322
+      alignment: 9
+      pivot: {x: 0.035722334, y: 0.9153372}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcca8ae3051ee5d48b668b31e02a01c9
+      internalID: 989252168736825547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_7
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 620
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb2ea8064c16cdb4a958c726df5a0b8b
+      internalID: 4794859440882528538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_8
+      rect:
+        serializedVersion: 2
+        x: 1211
+        y: 310
+        width: 114
+        height: 319
+      alignment: 9
+      pivot: {x: 0.9278768, y: 0.97340953}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3ee8cc255cccd845a9ff3595607979b
+      internalID: -661298153626941133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_9
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 82
+        width: 61
+        height: 403
+      alignment: 9
+      pivot: {x: 0.83628345, y: 0.98982483}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff2418f83b0dd23499ab819d13e6b51f
+      internalID: -3614317433972764127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_10
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 50
+        width: 107
+        height: 490
+      alignment: 9
+      pivot: {x: 0.045583423, y: 0.9897492}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a676bb6e9d6f2f342a4f497e47b15e9a
+      internalID: -5907971059784929818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_11
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 31
+        width: 614
+        height: 510
+      alignment: 9
+      pivot: {x: 0.0071511036, y: 0.9906481}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe2d85ce9c67974a86100219133a14e
+      internalID: -5212617073182803155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_12
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 475
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5281a955c67340842ae39b2cb53a2f61
+      internalID: 7984867801625040557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_13
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 474
+        width: 148
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0fae176fb725fa4fadec4c51396cfc8
+      internalID: -4433713638724192177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_14
+      rect:
+        serializedVersion: 2
+        x: 1519
+        y: 303
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940edd82996af944fa8b350bf190f915
+      internalID: -7832486531187727436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mosquito_15
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 31
+        width: 383
+        height: 171
+      alignment: 9
+      pivot: {x: 0.020314986, y: 0.96935046}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01f9e2d91f4d0734ab74953127da4a7e
+      internalID: 7927387732506661561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5eac8f6556593ba44b5f89669bbdfb6f
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
