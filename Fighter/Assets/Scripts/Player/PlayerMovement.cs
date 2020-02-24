@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
                     , bounds.maxCameraBounds.x + Vector3.Distance(bounds.maxCameraBounds, bounds.rightBound.position))
 
                 , transform.position.y
-                
+
                 , Mathf.Clamp(transform.position.z, -5f, -5f));
         }
 
@@ -152,54 +152,35 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash()
     {
-        dashSpeed = setDashValue;
         //checking the direction if it is 0 it means we aren't dashing
         if (direction == 0)
         {
+            dashSpeed = setDashValue;
+
             dash = false;
             animator.SetBool("IsDashing", false);
-            //spriteRenderer.enabled = true;
 
-            //If the LShift and LeftArrow are pressed the direction sets to 1 and we spawn some particles
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.A))
+            //If we are facing Right and pressing LShift, then the direction sets to 1 and start spawning particles
+            if (!controller.m_FacingRight && Input.GetKeyDown(KeyCode.LeftShift))
             {
+                animator.SetBool("IsDashing", true);
+                dash = true;
+
                 direction = 1;
-                CanInstantiateParticles(particleSpawn);
-                //spriteRenderer.enabled = false;
-                dash = true;
-            }
-            //Else if the LShift and RightArrow are pressed the direction sets to 2 and we spawn some particles
-            else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D))
-            {
-                direction = 2;
-                CanInstantiateParticles(particleSpawn);
-                //spriteRenderer.enabled = false;
-                dash = true;
-            }
-            //If we are pressing only LShift and we are facing right, then the direction sets to 3 and start spawning particles
-            if (controller.m_FacingRight == true && Input.GetKey(KeyCode.LeftShift))
-            {
-                direction = 3;
-                CanInstantiateParticles(particleSpawn);
-                //spriteRenderer.enabled = false;
-                dash = true;
-            }
+                Instantiate(particleSpawn, transform.position, Quaternion.identity);
 
-            //else if we are facing left and LShift is pressed, then the direction sets to 4 and spawns particles as well
-            else if (controller.m_FacingRight == false && Input.GetKey(KeyCode.LeftShift))
+                controller.m_Rigidbody2D.velocity = Vector2.left * dashSpeed;
+            }
+            //if we are facing Right and LShift is pressed, then the direction sets to 2 and spawns particles as well
+            if (controller.m_FacingRight && Input.GetKeyDown(KeyCode.LeftShift))
             {
-                direction = 4;
-                CanInstantiateParticles(particleSpawn);
-                //spriteRenderer.enabled = false;
+                animator.SetBool("IsDashing", true);
                 dash = true;
-            }
-            if (controller.m_FacingRight == true && dash == true && Input.GetKeyDown(KeyCode.A))
-            {
-                direction = 5;
-            }
-            else if (controller.m_FacingRight == false && dash == true && Input.GetKeyDown(KeyCode.D))
-            {
-                direction = 6;
+
+                direction = 2;
+                Instantiate(particleSpawn, transform.position, Quaternion.identity);
+
+                controller.m_Rigidbody2D.velocity = Vector2.right * dashSpeed;
             }
         }
         else
@@ -207,81 +188,24 @@ public class PlayerMovement : MonoBehaviour
             if (dashTime <= 0)
             {
                 direction = 0;
+
                 controller.m_Rigidbody2D.velocity = Vector2.zero;
-                controller.m_Rigidbody2D.gravityScale = 8f;
-                CanInstantiateParticles(particleSpawn);
+
+                //Instantiate(particleSpawn, transform.position, Quaternion.identity);
 
                 //resseting the spawn dash time
                 dashTime = startDashTime;
             }
-            //else if the time btw dash is not 0
             else
-            {
-                //we slowly decrease the dash time
                 dashTime -= Time.deltaTime;
-
-                //if we move to the left with LShift and LeftArrow presssed..
-                if (direction == 1)
-                {
-                    controller.m_Rigidbody2D.velocity = Vector2.left * dashSpeed;
-                    controller.m_Rigidbody2D.gravityScale = 0f;
-                    animator.SetBool("IsDashing", true);
-                }
-                //else we will dash into the opposite direction
-                else if (direction == 2)
-                {
-                    controller.m_Rigidbody2D.velocity = Vector2.right * dashSpeed;
-                    controller.m_Rigidbody2D.gravityScale = 0f;
-                    animator.SetBool("IsDashing", true);
-                }
-                //but if we dash with only LShift and we are facing right we will dash right without having to press arrows
-                else if (direction == 3)
-                {
-                    controller.m_Rigidbody2D.velocity = Vector2.right * dashSpeed;
-                    controller.m_Rigidbody2D.gravityScale = 0f;
-                    animator.SetBool("IsDashing", true);
-                }
-                //Same thing here but with the opposite direction
-                else if (direction == 4)
-                {
-                    controller.m_Rigidbody2D.velocity = Vector2.left * dashSpeed;
-                    controller.m_Rigidbody2D.gravityScale = 0f;
-                    animator.SetBool("IsDashing", true);
-                }
-                else if (direction == 5)
-                {
-                    animator.SetBool("IsDashing", true);
-                }
-                else if (direction == 6)
-                {
-                    animator.SetBool("IsDashing", true);
-                }
-            }
         }
 
-        if (direction == 1 || direction == 2 || direction == 3 || direction == 4 || direction == 5 || direction == 6)
+        if (direction == 1 || direction == 2)
         {
             health.immortalWhileDashing = true;
         }
         else if (direction == 0)
             health.immortalWhileDashing = false;
-    }
-
-    [SerializeField] private GameObject poofEffect;
-    [SerializeField] private Animator particleAnimator;
-    private void CanInstantiateParticles(GameObject particleSpawn)
-    {
-        if (!particleAnimator.GetCurrentAnimatorStateInfo(1).IsName("Poof"))
-        {
-            dash = true;
-            isDashing = true;
-            Instantiate(particleSpawn, transform.position, Quaternion.identity);
-        }
-        else if (poofEffect.GetComponent<Animator>().GetCurrentAnimatorStateInfo(1).IsName("Poof"))
-        {
-            dash = false;
-            isDashing = false;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

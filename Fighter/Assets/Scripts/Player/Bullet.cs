@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
     {
         Boss boss = hitInfo.GetComponent<Boss>();
         Cannon cannon = hitInfo.GetComponent<Cannon>();
+        SmallBoss sBoss = hitInfo.GetComponent<SmallBoss>();
 
         if (boss != null)
         {
@@ -25,13 +26,19 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(cannon != null)
+        if (cannon != null)
         {
             cannon.TakeCanonDamage(damage);
             Destroy(gameObject);
         }
 
-        if(hitInfo.CompareTag("Environment"))
+        if (sBoss != null)
+        {
+            sBoss.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
+        if (hitInfo.CompareTag("Environment"))
         {
             Destroy(gameObject);
         }

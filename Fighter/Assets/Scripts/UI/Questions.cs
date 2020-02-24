@@ -82,23 +82,27 @@ public class Questions : MonoBehaviour
             pM.isMoving = true;
             pM.isDashing = true;
 
-            if(isLastQuestion)
+            if (isLastQuestion)
             {
                 hp.immortal = true;
                 hp.immortalTime = 5F;
+                pM.isDashing = true;
             }
             
             Debug.Log("Correct!");
         }
         else
+        {
             Debug.Log("Not Correct!");
+        }
     }
 
     public void Continue()
     {
         Time.timeScale = 1f;
+        pM.isDashing = true;
     }
-
+    
     public void ReadFile(string[] lines)
     {
         int i = 0;

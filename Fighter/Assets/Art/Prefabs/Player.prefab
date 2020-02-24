@@ -175,13 +175,9 @@ MonoBehaviour:
   isMoving: 1
   restricted: 0
   canBeRestricted: 0
-  startDashTime: 0.3
-  setDashValue: 50
+  startDashTime: 0.8
+  setDashValue: 200
   activNoDmg: 1
-  poofEffect: {fileID: 4443276461342239382, guid: aa0aa9ed8c00fba49a94dee8dd2d3edd,
-    type: 3}
-  particleAnimator: {fileID: 4443276461342239377, guid: aa0aa9ed8c00fba49a94dee8dd2d3edd,
-    type: 3}
 --- !u!114 &5754257836461986041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,11 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25495ca90054f484882c983fc1dad0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
   numOfHearts: 5
   immortal: 0
+  immortalWhileDashing: 0
   immortalTime: 5
-  minY: 0
   hearts:
   - {fileID: 0}
   - {fileID: 0}
@@ -211,13 +206,13 @@ MonoBehaviour:
     type: 3}
   spriteRenderer: {fileID: 5754257836461986033}
   rb: {fileID: 5754257836461986035}
-  player: {fileID: 5754257836461986034}
   colliderToDisable: {fileID: 5754257836461986036}
   anim: {fileID: 5754257836461986038}
   bullet: {fileID: 5641782724574240827, guid: dae60a84bfe28164ebe5f574747dae30, type: 3}
   pMovement: {fileID: 5754257836461986037}
   jumpWhenHitted: 30
   questionDeath: {fileID: 0}
+  canTeleport: 0
 --- !u!114 &5754257836461986039
 MonoBehaviour:
   m_ObjectHideFlags: 0

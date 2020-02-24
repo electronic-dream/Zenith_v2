@@ -53,7 +53,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("MainCharDead"))
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("MainChar-dead"))
         {
             bullet.SetActive(true);
         }
@@ -117,6 +117,9 @@ public class Health : MonoBehaviour
             Dead();
         }
 
+        anim.SetTrigger("dead");
+        colliderToDisable.enabled = false;
+
         yield return new WaitForSecondsRealtime(1.6f);
 
         if (count == 0)
@@ -142,7 +145,7 @@ public class Health : MonoBehaviour
 
                 playerPos.position = newPos;
             }
-
+            
             count++;
         }
     }
@@ -152,7 +155,7 @@ public class Health : MonoBehaviour
         colliderToDisable.enabled = false;
         //jumpBack = false;
 
-        anim.SetBool("dead", true);
+        anim.SetTrigger("dead");
         anim.SetBool("IsJumping", false);
 
         bullet.SetActive(false);
