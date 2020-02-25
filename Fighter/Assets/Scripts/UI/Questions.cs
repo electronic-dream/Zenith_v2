@@ -39,8 +39,15 @@ public class Questions : MonoBehaviour
 
     void Awake()
     {
+        string DocumentsPath = Application.dataPath;
+        //Debug.Log(DocumentsPath);
+
         int num = Random.Range(1, 5);
-        string[] lines = File.ReadAllLines("Assets/Questions/" + mainQuestionFolder + "/" + questionFolder + "/Question" + num + ".txt", Encoding.UTF8);
+        //string finalFilePath = $"{DocumentsPath}/Questions/{mainQuestionFolder}/{questionFolder}/Question{num}.txt";
+
+        string[] lines = File.ReadAllLines(DocumentsPath + "/Questions/" + mainQuestionFolder + "/" + questionFolder + "/Question" + num + ".txt", Encoding.UTF8);
+
+        //Debug.Log("GGames/Zenith_v2/Fighter/Assets/Questions/" + mainQuestionFolder + "/" + questionFolder + "/Question" + num + ".txt");
 
         ReadFile(lines);
         questionText.text = question;
@@ -71,7 +78,7 @@ public class Questions : MonoBehaviour
 
         Time.timeScale = 0f;
     }
-
+    
     public void CheckIfRight(int answerNum)
     {
         if (correctAnswer.CompareTo(buttons[answerNum - 1].GetComponentInChildren<Text>().text) == 0)
@@ -88,7 +95,7 @@ public class Questions : MonoBehaviour
                 hp.immortalTime = 5F;
                 pM.isDashing = true;
             }
-            
+
             Debug.Log("Correct!");
         }
         else
@@ -102,7 +109,7 @@ public class Questions : MonoBehaviour
         Time.timeScale = 1f;
         pM.isDashing = true;
     }
-    
+
     public void ReadFile(string[] lines)
     {
         int i = 0;

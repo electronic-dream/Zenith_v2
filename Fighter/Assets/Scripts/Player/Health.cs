@@ -110,6 +110,8 @@ public class Health : MonoBehaviour
     //        anim.SetBool("IsJumping", true);
     //    }
     //}
+
+    public Transform[] teleportPoints;
     public IEnumerator QuestionBeforeDeath()
     {
         if (count > 0)
@@ -126,26 +128,21 @@ public class Health : MonoBehaviour
         {
             questionDeath.SetActive(true);
             immortal = true;
-            immortalTime = 5f;
-
-            if (canTeleport)
-            {
-                Transform playerPos = GameObject.Find("Player").transform;
-                Transform bossPos = GameObject.FindGameObjectWithTag("Boss").transform;
-
-                Vector3 newPos = bossPos.position;
-
-                //Debug.Log("CM " + Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)));
-                //Debug.Log("SW " + Screen.width / 2);
-
-                if (bossPos.position.x <= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
-                    newPos.x *= 5f;
-                else if (bossPos.position.x > Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
-                    newPos.x /= 5f;
-
-                playerPos.position = newPos;
-            }
+            immortalTime = 3f;
             
+            Transform playerPos = GameObject.Find("Player").transform;
+            Transform bossPos = GameObject.FindGameObjectWithTag("Boss").transform;
+
+            if (teleportPoints.Length >= 2)
+            {
+                if (bossPos.position.x <= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
+                    playerPos.position = teleportPoints[1].position;
+                else if (bossPos.position.x > Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
+                    playerPos.position = teleportPoints[0].position;
+            }
+            else
+                playerPos.position = teleportPoints[0].position;
+
             count++;
         }
     }
