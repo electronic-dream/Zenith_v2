@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class TeleportController : MonoBehaviour
 {
@@ -24,13 +25,19 @@ public class TeleportController : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            cannon.canShoot = true;
-
-            for (int i = 1; i < holes.Length; i++)
-            {
-                player.position = holes[i].position;
-            }
+            StartCoroutine(Teleport());
         }
+    }
+
+    IEnumerator Teleport()
+    {
+        for (int i = 1; i < holes.Length; i++)
+        {
+            yield return new WaitForSeconds(1f);        
+            player.position = holes[i].position;
+        }
+     
+        cannon.canShoot = true;
     }
 
     private void OnDrawGizmos()
