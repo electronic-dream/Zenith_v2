@@ -38,6 +38,7 @@ public class Health : MonoBehaviour
     public GameObject questionDeath;
 
     public bool canTeleport = false;
+    bool canBeExecuted = true;
 
     //public PauseMenu pauseMenu;
 
@@ -114,11 +115,6 @@ public class Health : MonoBehaviour
     public Transform[] teleportPoints;
     public IEnumerator QuestionBeforeDeath()
     {
-        if (count > 0)
-        {
-            Dead();
-        }
-
         anim.SetTrigger("dead");
         colliderToDisable.enabled = false;
 
@@ -129,7 +125,7 @@ public class Health : MonoBehaviour
             questionDeath.SetActive(true);
             immortal = true;
             immortalTime = 3f;
-            
+
             Transform playerPos = GameObject.Find("Player").transform;
             Transform bossPos = GameObject.FindGameObjectWithTag("Boss").transform;
 
@@ -145,20 +141,6 @@ public class Health : MonoBehaviour
 
             count++;
         }
-    }
-
-    public void Dead()
-    {
-        colliderToDisable.enabled = false;
-        //jumpBack = false;
-
-        anim.SetTrigger("dead");
-        anim.SetBool("IsJumping", false);
-
-        bullet.SetActive(false);
-
-        //StartCoroutine(Die());
-        //Destroy(gameObject, 2f);
     }
 
     //IEnumerator Die()

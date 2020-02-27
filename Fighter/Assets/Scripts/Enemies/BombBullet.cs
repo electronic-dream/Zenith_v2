@@ -21,18 +21,18 @@ public class BombBullet : MonoBehaviour
     public void DestroyBullet()
     {
         Instantiate(destroyEffect, transform.position, transform.rotation);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Health hp = collision.GetComponent<Health>();
+        PlayerMovement pM = collision.GetComponent<PlayerMovement>();
 
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Boom!");
 
-            if (!hp.immortal)
+            if (!pM.isDashing)
                 DestroyBullet();
         }
     }

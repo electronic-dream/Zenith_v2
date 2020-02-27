@@ -9,6 +9,7 @@ public class Cannon : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public TeleportController teleportController;
+    public Health hp;
 
     public bool canShoot = false;
     public bool isFacingRight = false;
@@ -56,6 +57,7 @@ public class Cannon : MonoBehaviour
             {
                 question.SetActive(true);
                 nextLevel.isAllowedToContinue = true;
+                hp.immortal = true;
             }
 
             Destroy(gameObject);

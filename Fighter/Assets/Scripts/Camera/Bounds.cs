@@ -25,7 +25,7 @@ public class Bounds : MonoBehaviour
     [Space(10)]
     public Vector3 minCameraBounds;
     public Vector3 maxCameraBounds;
-    
+
     [HideInInspector]
     public Vector3 currentCameraBounds;
 
@@ -83,33 +83,46 @@ public class Bounds : MonoBehaviour
 
             if (cameraShiftY)
             {
-                Transform playerPos = GameObject.Find("Player").transform;
-                Vector3 nextCameraBounds = currentCameraBounds;
+                Transform player = GameObject.Find("Player").transform;
 
-                float _upBoundPosY = upBound.transform.position.y;
-                float _downBoundPosY = downBound.transform.position.y;
+                transform.position = new Vector3(
+                    transform.position.x,
+                    Mathf.Clamp(
+                        Mathf.Lerp
+                            (transform.position.y
+                            ,player.position.y
+                            ,cameraMovementSpeed * Time.deltaTime)
+                       ,minCameraBounds.y, 
+                        maxCameraBounds.y),
+                    transform.position.z);
 
-                if (playerPos.position.y > _upBoundPosY)
-                {
-                    float _nextCameraBoundX = minCameraBounds.x;
-                    float _nextCameraBoundY = currentCameraBounds.y + 23f;
+                //Transform playerPos = GameObject.Find("Player").transform;
+                //Vector3 nextCameraBounds = currentCameraBounds;
 
-                    currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
-                }
-                if (playerPos.position.y < _downBoundPosY)
-                {
-                    float _prevCameraBoundX = minCameraBounds.x;
-                    float _prevCameraBoundY = currentCameraBounds.y - 23f;
+                //float _upBoundPosY = upBound.transform.position.y;
+                //float _downBoundPosY = downBound.transform.position.y;
 
-                    currentCameraBounds = new Vector3(_prevCameraBoundX, _prevCameraBoundY, -10f);
-                }
+                //if (playerPos.position.y > _upBoundPosY)
+                //{
+                //    float _nextCameraBoundX = minCameraBounds.x;
+                //    float _nextCameraBoundY = currentCameraBounds.y + 23f;
 
-                nextCameraBounds = new Vector3(
-                    Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
-                    , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
-                    , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
+                //    currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
+                //}
+                //if (playerPos.position.y < _downBoundPosY)
+                //{
+                //    float _prevCameraBoundX = minCameraBounds.x;
+                //    float _prevCameraBoundY = currentCameraBounds.y - 23f;
 
-                transform.position = Vector3.Lerp(transform.position, nextCameraBounds, cameraMovementSpeed * Time.deltaTime);
+                //    currentCameraBounds = new Vector3(_prevCameraBoundX, _prevCameraBoundY, -10f);
+                //}
+
+                //nextCameraBounds = new Vector3(
+                //    Mathf.Clamp(currentCameraBounds.x, minCameraBounds.x, maxCameraBounds.x)
+                //    , Mathf.Clamp(currentCameraBounds.y, minCameraBounds.y, maxCameraBounds.y)
+                //    , Mathf.Clamp(currentCameraBounds.z, -10f, -10f));
+
+                //transform.position = Vector3.Lerp(transform.position, nextCameraBounds, cameraMovementSpeed * Time.deltaTime);
             }
         }
 

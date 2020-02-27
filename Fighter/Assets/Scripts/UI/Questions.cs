@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Questions : MonoBehaviour
 {
@@ -34,8 +35,6 @@ public class Questions : MonoBehaviour
 
     List<string> answers = new List<string>();
     int mainRand = 0;
-
-    //int[] nums = new int[] { firstRand, secondRand, thirdRand };
 
     void Awake()
     {
@@ -78,7 +77,9 @@ public class Questions : MonoBehaviour
 
         Time.timeScale = 0f;
     }
-    
+
+    public bool isDeathQuestion;
+
     public void CheckIfRight(int answerNum)
     {
         if (correctAnswer.CompareTo(buttons[answerNum - 1].GetComponentInChildren<Text>().text) == 0)
@@ -92,8 +93,9 @@ public class Questions : MonoBehaviour
             if (isLastQuestion)
             {
                 hp.immortal = true;
-                hp.immortalTime = 5F;
                 pM.isDashing = true;
+                hp.immortalTime = 5F;
+                Continue();
             }
 
             Debug.Log("Correct!");
@@ -101,6 +103,17 @@ public class Questions : MonoBehaviour
         else
         {
             Debug.Log("Not Correct!");
+
+            if (isLastQuestion)
+            {
+                Continue();
+            }
+
+            if (isDeathQuestion)
+            {
+                SceneManager.LoadScene("Level1");
+                Health.health = 1;
+            }
         }
     }
 
