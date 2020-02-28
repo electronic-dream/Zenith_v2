@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Health : MonoBehaviour
 {
     public static int health = 1;
-    private static int count = 0;
+    [HideInInspector] public static bool askedQuestion = false;
 
     public int numOfHearts;
     [SerializeField]
@@ -120,9 +120,10 @@ public class Health : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1.6f);
 
-        if (count == 0)
+        if (!askedQuestion)
         {
             questionDeath.SetActive(true);
+            askedQuestion = true;
             immortal = true;
             immortalTime = 3f;
 
@@ -138,8 +139,6 @@ public class Health : MonoBehaviour
             }
             else
                 playerPos.position = teleportPoints[0].position;
-
-            count++;
         }
     }
 

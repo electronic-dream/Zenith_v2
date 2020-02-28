@@ -48,9 +48,13 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = false;
     }
 
+    public Health hp;
     public void RestartLevel()
     {
         Time.timeScale = 1f;
+        hp.immortal = false;
+        Health.askedQuestion = false;
+        Health.health = 1;
         SceneManager.LoadScene("Level1");
     }
 

@@ -92,11 +92,13 @@ public class Questions : MonoBehaviour
 
             if (isLastQuestion)
             {
-                hp.immortal = true;
+                //hp.immortal = true;
                 pM.isDashing = true;
                 hp.immortalTime = 5F;
                 Continue();
             }
+            if(isDeathQuestion)
+                hp.immortal = true;
 
             Debug.Log("Correct!");
         }
@@ -111,6 +113,7 @@ public class Questions : MonoBehaviour
 
             if (isDeathQuestion)
             {
+                hp.immortal = false;
                 SceneManager.LoadScene("Level1");
                 Health.health = 1;
             }

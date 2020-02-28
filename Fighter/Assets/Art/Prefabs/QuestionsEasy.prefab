@@ -113,7 +113,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -163,9 +163,7 @@ MonoBehaviour:
   - {fileID: 8255169569195829474}
   - {fileID: 8255169570174031746}
   - {fileID: 8255169569691372986}
-  showDeathMenu: 0
-  deathMenu: {fileID: 0}
-  questionGM: {fileID: 63431277972910389}
+  isDeathQuestion: 0
 --- !u!1 &8255169568741713098
 GameObject:
   m_ObjectHideFlags: 0
