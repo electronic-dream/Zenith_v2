@@ -27,7 +27,7 @@ public class BombBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerMovement pM = collision.GetComponent<PlayerMovement>();
-
+        
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Boom!");

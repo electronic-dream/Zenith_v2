@@ -12,6 +12,7 @@ public class TeleportController : MonoBehaviour
     public Transform[] holes;
 
     public bool isAllowedToContinue = false;
+    bool teleported = false;
 
     private void Update()
     {
@@ -33,11 +34,16 @@ public class TeleportController : MonoBehaviour
     {
         for (int i = 1; i < holes.Length; i++)
         {
-            yield return new WaitForSeconds(1f);        
+            yield return new WaitForSeconds(.5f);
             player.position = holes[i].position;
         }
-     
-        cannon.canShoot = true;
+
+        player.GetComponent<Health>().immortal = true;
+        Cannon.canShoot = true;
+
+        yield return new WaitForSeconds(1f);
+
+        player.GetComponent<Health>().immortal = false;
     }
 
     private void OnDrawGizmos()

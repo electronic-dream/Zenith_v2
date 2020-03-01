@@ -11,7 +11,7 @@ public class Cannon : MonoBehaviour
     public TeleportController teleportController;
     public Health hp;
 
-    public bool canShoot = false;
+    public static bool canShoot = false;
     public bool isFacingRight = false;
     public bool isLastCannon = false;
 
@@ -52,6 +52,7 @@ public class Cannon : MonoBehaviour
         if (health <= 0)
         {
             teleportController.isAllowedToContinue = true;
+            canShoot = false;
 
             if (isLastCannon)
             {

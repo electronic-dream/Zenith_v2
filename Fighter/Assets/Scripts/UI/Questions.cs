@@ -97,8 +97,10 @@ public class Questions : MonoBehaviour
                 hp.immortalTime = 5F;
                 Continue();
             }
-            if(isDeathQuestion)
+            if (isDeathQuestion)
+            {
                 hp.immortal = true;
+            }
 
             Debug.Log("Correct!");
         }

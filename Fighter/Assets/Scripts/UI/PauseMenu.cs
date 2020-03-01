@@ -10,8 +10,11 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public GameObject deathMenuUI;
 
     public GameObject[] questions;
+
+    public Health hp;
 
     private void Update()
     {
@@ -31,9 +34,14 @@ public class PauseMenu : MonoBehaviour
             
             if (i <= questions.Length)
                 i++;
+
+            if (Health.askedQuestion)
+                StartCoroutine(DeathMenu());
+            else
+                StopCoroutine(DeathMenu());
         }
     }
-    
+
     private void Pause()
     {
         pauseMenuUI.SetActive(true);
@@ -48,7 +56,6 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = false;
     }
 
-    public Health hp;
     public void RestartLevel()
     {
         Time.timeScale = 1f;
@@ -62,5 +69,19 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(levelName);
+    }
+
+    public IEnumerator DeathMenu()
+    {
+        if (questions[questions.Length - 1].activeSelf)
+            StopCoroutine(DeathMenu());
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        if (Health.health <= 0 && !questions[questions.Length - 1].activeSelf)
+        {
+            deathMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 }
