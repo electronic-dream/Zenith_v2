@@ -8,19 +8,23 @@ public class FollowPlayer : MonoBehaviour
 
     public float speed = 10f;
 
+    Transform player;
+    Vector3 target;
+
+    private void Start()
+    {
+        player = GameObject.Find("Player").transform;
+
+        target = new Vector3(player.position.x, player.position.y);
+    }
+
     private void FixedUpdate()
     {
-        Transform player = GameObject.Find("Player").transform;
-
-        if (player.position.x >= transform.position.x)
+        if (transform.position.x <= target.x && transform.position.y <= target.y)
         {
             rb2d.velocity = -transform.right * speed;
         }
         else
-        {
-            Vector2 target = new Vector2(player.position.x, player.position.y);
-
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.fixedDeltaTime);
-        }
     }
 }

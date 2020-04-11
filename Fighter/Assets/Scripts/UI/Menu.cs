@@ -31,7 +31,7 @@ public class Menu : MonoBehaviour
                 currentResolutionIndex = i;
             }
         }
-        
+
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
@@ -61,6 +61,7 @@ public class Menu : MonoBehaviour
 
     public void NextLevel()
     {
+        Health.askedQuestion = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

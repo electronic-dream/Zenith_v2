@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Detector : MonoBehaviour
 {
-    public Animator bossAnimator;
-    public Bounds bounds;
+    public enum Level
+    {
+        First,
+        Second,
+        Third
+    }
+
+    public Level currentLevel = Level.First;
 
     GameObject player;
     BoxCollider2D boxCollider;
@@ -21,6 +27,7 @@ public class Detector : MonoBehaviour
         if(collision.gameObject == player)
         {
             //bounds.locked = true;
+            
             boxCollider.enabled = false;
         }
     }

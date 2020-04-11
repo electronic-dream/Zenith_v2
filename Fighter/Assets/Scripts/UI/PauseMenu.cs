@@ -74,7 +74,7 @@ public class PauseMenu : MonoBehaviour
     public IEnumerator DeathMenu()
     {
         if (questions[questions.Length - 1].activeSelf)
-            StopCoroutine(DeathMenu());
+            yield break;
 
         yield return new WaitForSecondsRealtime(2f);
 

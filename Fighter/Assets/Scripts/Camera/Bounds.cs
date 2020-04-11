@@ -40,8 +40,9 @@ public class Bounds : MonoBehaviour
 
     [SerializeField] bool cameraShiftX = false;
     [SerializeField] bool cameraShiftY = false;
+    [SerializeField] float nextFrame = 35f;
 
-    void LateUpdate()
+    void Update()
     {
         if (!locked)
         {
@@ -55,7 +56,7 @@ public class Bounds : MonoBehaviour
 
                 if (playerPos.position.x > _rightBoundPosX)
                 {
-                    float _nextCameraBoundX = currentCameraBounds.x + 35f; //it works, somehow
+                    float _nextCameraBoundX = currentCameraBounds.x + nextFrame; //it works, somehow
                     float _nextCameraBoundY = minCameraBounds.y;
 
                     currentCameraBounds = new Vector3(_nextCameraBoundX, _nextCameraBoundY, -10f);
@@ -67,7 +68,7 @@ public class Bounds : MonoBehaviour
                 }
                 if (playerPos.position.x < _leftBoundPosX)
                 {
-                    float _prevCameraBoundX = currentCameraBounds.x - 35f; //it works, somehow
+                    float _prevCameraBoundX = currentCameraBounds.x - nextFrame; //it works, somehow
                     float _prevCameraBoundY = minCameraBounds.y;
 
                     currentCameraBounds = new Vector3(_prevCameraBoundX, _prevCameraBoundY, -10f);

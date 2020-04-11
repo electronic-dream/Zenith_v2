@@ -21,12 +21,13 @@ public class PlayerMovement : MonoBehaviour
     public Bounds bounds;
     public Health health;
     public Boss boss;
+    public SmallBoss sBoss;
 
+    public bool isBigBoss = true;
     public bool isDashing = true;
     public bool isMoving = true;
     public bool restricted = false;
     public bool canBeRestricted = false;
-
 
     [Space]
     private float dashSpeed;
@@ -72,15 +73,31 @@ public class PlayerMovement : MonoBehaviour
 
     void RestrictPlayer()
     {
-        if (boss.health > 0)
+        if (isBigBoss)
         {
-            restricted = true;
-            bounds.locked = true;
+            if (boss.health > 0)
+            {
+                restricted = true;
+                bounds.locked = true;
+            }
+            else
+            {
+                restricted = false;
+                bounds.locked = false;
+            }
         }
         else
         {
-            restricted = false;
-            bounds.locked = false;
+            if (sBoss.health > 0)
+            {
+                restricted = true;
+                bounds.locked = true;
+            }
+            else
+            {
+                restricted = false;
+                bounds.locked = false;
+            }
         }
     }
 

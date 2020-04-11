@@ -113,6 +113,7 @@ public class Health : MonoBehaviour
     //}
 
     public Transform[] teleportPoints;
+    public bool canTeleportInLevel = false;
     public IEnumerator QuestionBeforeDeath()
     {
         anim.SetTrigger("dead");
@@ -122,25 +123,30 @@ public class Health : MonoBehaviour
 
         if (!askedQuestion)
         {
+            askedQuestion = true;
             questionDeath.SetActive(true);
             Cannon.canShoot = false;
-            askedQuestion = true;
             immortal = true;
             immortalTime = 3f;
 
             Transform playerPos = GameObject.Find("Player").transform;
 
-            if (teleportPoints.Length >= 2)
+            if (canTeleportInLevel)
             {
-                Transform bossPos = GameObject.FindGameObjectWithTag("Boss").transform;
+                if (teleportPoints.Length >= 2)
+                {
+                    Transform bossPos = GameObject.FindGameObjectWithTag("Boss").transform;
 
-                if (bossPos.position.x <= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
-                    playerPos.position = teleportPoints[1].position;
-                else if (bossPos.position.x > Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
+                    if (bossPos.position.x <= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
+                        playerPos.position = teleportPoints[1].position;
+                    else if (bossPos.position.x > Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0.0f, 0.0f)).x)
+                        playerPos.position = teleportPoints[0].position;
+                }
+                else
+                {
                     playerPos.position = teleportPoints[0].position;
+                }
             }
-            else
-                playerPos.position = teleportPoints[0].position;
         }
     }
 

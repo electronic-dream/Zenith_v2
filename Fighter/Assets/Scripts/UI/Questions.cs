@@ -9,10 +9,22 @@ using UnityEngine.SceneManagement;
 
 public class Questions : MonoBehaviour
 {
+    public enum HistoryType
+    {
+        BulgarianHistory,
+        WorldHistory
+    }
+
+    public HistoryType historyType;// = HistoryType.BulgarianHistory;
+
     public Health hp;
     public PlayerMovement pM;
+
     public string mainQuestionFolder;
     public string questionFolder;
+
+    [HideInInspector]
+    public string startQuestionFolder = "";
 
     string question = "";
     public Text questionText;
@@ -44,7 +56,16 @@ public class Questions : MonoBehaviour
         int num = Random.Range(1, 5);
         //string finalFilePath = $"{DocumentsPath}/Questions/{mainQuestionFolder}/{questionFolder}/Question{num}.txt";
 
-        string[] lines = File.ReadAllLines(DocumentsPath + "/Questions/" + mainQuestionFolder + "/" + questionFolder + "/Question" + num + ".txt", Encoding.UTF8);
+        if (historyType == HistoryType.WorldHistory)
+        {
+            startQuestionFolder = "QuestionsWH";
+        }
+        else if (historyType == HistoryType.BulgarianHistory)
+        {
+            startQuestionFolder = "Questions";
+        }
+
+        string[] lines = File.ReadAllLines(DocumentsPath + "/" + startQuestionFolder + "/" + mainQuestionFolder + "/" + questionFolder + "/Question" + num + ".txt", Encoding.UTF8);
 
         //Debug.Log("GGames/Zenith_v2/Fighter/Assets/Questions/" + mainQuestionFolder + "/" + questionFolder + "/Question" + num + ".txt");
 

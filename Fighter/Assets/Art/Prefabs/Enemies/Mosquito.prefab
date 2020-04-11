@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 7823108443522063935}
-  speed: 15
+  speed: 25
 --- !u!50 &7823108443522063935
 Rigidbody2D:
   serializedVersion: 4
@@ -786,6 +786,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   isInvincible: 0
+  isUsabble: 0
+  bubbleEffectShowing: {fileID: 0}
+  bubbleEffectGoingDown: {fileID: 0}
   enemyPrefab: {fileID: 0}
   enemySpawnMinY: 0
   enemySpawnMaxY: 0

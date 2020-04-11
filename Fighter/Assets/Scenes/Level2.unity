@@ -1995,6 +1995,7 @@ MonoBehaviour:
   currentCameraBounds: {x: 0, y: 0, z: 0}
   cameraShiftX: 0
   cameraShiftY: 1
+  nextFrame: 35
 --- !u!4 &258307276
 Transform:
   m_ObjectHideFlags: 0
@@ -10298,6 +10299,11 @@ PrefabInstance:
       propertyPath: deathMenu
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5754257836461986041, guid: a1fee4254be3e1843ac6e01103a8e784,
+        type: 3}
+      propertyPath: canTeleportInLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5754257836461986037, guid: a1fee4254be3e1843ac6e01103a8e784,
         type: 3}
       propertyPath: bounds
@@ -10311,12 +10317,12 @@ PrefabInstance:
     - target: {fileID: 5754257836461986034, guid: a1fee4254be3e1843ac6e01103a8e784,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -46.9
+      value: -56.8
       objectReference: {fileID: 0}
     - target: {fileID: 5754257836461986034, guid: a1fee4254be3e1843ac6e01103a8e784,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 79.6
+      value: 77.9
       objectReference: {fileID: 0}
     - target: {fileID: 5754257836461986034, guid: a1fee4254be3e1843ac6e01103a8e784,
         type: 3}
@@ -13869,7 +13875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2051511691
 Transform:
   m_ObjectHideFlags: 0
