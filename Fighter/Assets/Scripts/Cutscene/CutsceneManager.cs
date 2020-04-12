@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CutsceneManager : MonoBehaviour
 {
     public Image[] frames;
+    public GameObject nextFrameButton;
     public int currentFrameIndex = 0;
 
     private void Start()
@@ -32,5 +34,18 @@ public class CutsceneManager : MonoBehaviour
         frames[currentFrameIndex + 1].enabled = true;
      
         currentFrameIndex++;
+    }
+
+    private void Update()
+    {
+        if(currentFrameIndex >= frames.Length - 1)
+        {
+            nextFrameButton.SetActive(false);
+
+            if(Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter))
+            {
+                SceneManager.LoadScene("Menu");
+            }
+        }
     }
 }

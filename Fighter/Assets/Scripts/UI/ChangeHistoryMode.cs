@@ -22,11 +22,9 @@ public class ChangeHistoryMode : MonoBehaviour
 
         questionsGO = GameObject.Find("Questions");
 
-        questionsGO.GetComponentsInChildren(true, questions);
-    }
+        if (questionsGO != null)
+            questionsGO.GetComponentsInChildren(true, questions);
 
-    private void LateUpdate()
-    {
         if (historyTypes == HistoryType.WorldHistory)
         {
             foreach (var question in questions)

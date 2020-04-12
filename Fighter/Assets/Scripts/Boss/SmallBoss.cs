@@ -10,6 +10,11 @@ public class SmallBoss : MonoBehaviour
     public bool isInvincible = false;
     public int mosquitosCount = 5;
 
+    public NextLevel nxtLevel;
+    public GameObject question;
+
+    public bool isLastBoss = false;
+
     //if we are not going to use the gameobjects below then we can set this bool to be equal to false,
     //the same goes when we are going to use them
     public bool isUsabble = true;
@@ -24,6 +29,12 @@ public class SmallBoss : MonoBehaviour
             {
                 //Instantiate(deathEffectPrefab, transform.position, transform.rotation);
                 Destroy(gameObject);
+
+                if (isLastBoss)
+                {
+                    nxtLevel.isAllowedToContinue = true;
+                    question.SetActive(true);
+                }
             }
         }
     }

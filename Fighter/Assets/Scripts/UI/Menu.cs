@@ -10,6 +10,9 @@ public class Menu : MonoBehaviour
     Resolution[] resolutions;
 
     public Dropdown resolutionDropdown;
+    public ChangeHistoryMode historyMode;
+
+    public Toggle[] historyToggles;
 
     private void Start()
     {
@@ -35,6 +38,27 @@ public class Menu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+    }
+
+    public void SetHistoryTypeBG()
+    {
+        if (historyToggles[0].isOn)
+            historyToggles[1].isOn = false;
+
+        if (!historyToggles[0].isOn)
+            historyToggles[1].isOn = true;
+
+        historyMode.SetBulgarianHistory();
+    }
+    public void SetHistoryTypeWH()
+    {
+        if (historyToggles[1].isOn)
+            historyToggles[0].isOn = false;
+
+        if (!historyToggles[1].isOn)
+            historyToggles[0].isOn = true;
+
+        historyMode.SetWorldHistory();
     }
 
     public void SetResolution(int resolutionIndex)
