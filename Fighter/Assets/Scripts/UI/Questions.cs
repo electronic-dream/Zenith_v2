@@ -47,21 +47,14 @@ public class Questions : MonoBehaviour
 
     List<string> answers = new List<string>();
     int mainRand = 0;
-    
-    void Start()
-    {
-        StartCoroutine(LoadTheQuestions());
-    }
 
-    public IEnumerator LoadTheQuestions()
+    void Start()
     {
         string DocumentsPath = Application.dataPath;
         //Debug.Log(DocumentsPath);
 
         int num = Random.Range(1, 5);
         //string finalFilePath = $"{DocumentsPath}/Questions/{mainQuestionFolder}/{questionFolder}/Question{num}.txt";
-        
-        yield return new WaitForSeconds(.0001f);
 
         if (historyType == HistoryType.WorldHistory)
         {
@@ -73,7 +66,7 @@ public class Questions : MonoBehaviour
         }
 
         Debug.Log(startQuestionFolder);
-
+        
         string[] lines = File.ReadAllLines(DocumentsPath + "/" + startQuestionFolder + "/" + mainQuestionFolder + "/" + questionFolder + "/Question" + num + ".txt", Encoding.UTF8);
 
         //Debug.Log("GGames/Zenith_v2/Fighter/Assets/Questions/" + mainQuestionFolder + "/" + questionFolder + "/Question" + num + ".txt");
