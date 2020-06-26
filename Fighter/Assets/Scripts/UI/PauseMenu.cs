@@ -69,6 +69,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(levelName);
+        Health.health = 1;
     }
 
     public IEnumerator DeathMenu()

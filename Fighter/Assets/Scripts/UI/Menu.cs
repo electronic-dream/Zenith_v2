@@ -50,6 +50,7 @@ public class Menu : MonoBehaviour
 
         historyMode.SetBulgarianHistory();
     }
+
     public void SetHistoryTypeWH()
     {
         if (historyToggles[1].isOn)
@@ -87,5 +88,9 @@ public class Menu : MonoBehaviour
     {
         Health.askedQuestion = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void ResetHp()
+    {
+        Health.health = 1;
     }
 }
